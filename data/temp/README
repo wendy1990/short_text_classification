@@ -1,0 +1,4 @@
+﻿文件夹下包含
+--分词结果文件：segmented_post.train，segmented_post.test
+--构造好的libsvm格式文件：svm.test,svm.train
+

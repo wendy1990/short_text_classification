@@ -1,0 +1,137 @@
+                                              短文本分类模块说明
+                     
+                                                                              By Felix.liang        
+文件夹描述
+=====
+                                                       
+说明：本程序为封装好的分步执行的tmsvm文本分类器，程序中用到数据以及其默认的数据存放路径如下所述，
+1.  /sample 文件夹
+      -post.train （训练样本），
+      -post.test  （测试样本），
+2.  /data/model 文件夹
+      -dic.key  （训练出来的特征词典）
+      -svm.model  （训练出来的分类模型）
+      -post.config （存放模型训练过程相关参数值的配置文件）
+3.  /data/temp 文件夹 （存放中间结果文件）
+4.  /src 文件夹  
+        python及shell脚本  ：线下模型生成和预测分析
+        short_TFIDF_predict 文件夹：短文本分类线上运行的c++代码
+        libsvm_construct 文件夹： 构造libsvm格式文件的c++代码
+5.  /conf文件夹 (存放停用此表等文件)      
+
+
+
+python脚本使用说明及功能描述
+======
+ 
+Sed去噪(pre_process)
+  @brief
+    样本的初步去噪（去特殊符号、英文字母、数字、url ...）
+   INPUT    ： 待去噪样本
+   OUTPUT ： 去噪后的样本（覆盖初始样本）
+   @usage
+   sh pre_process 待去噪样本文件名
+
+tmsvm分步训练与预测
+1.     分词（word_segment.py）
+@brief
+ 对微博训练样本进行分词处理,并保存结果文件。
+INPUT    ： 训练样本 （一个文本文件，每行包含分类标签“1”或者“-1” 和微博内容，以空格隔开)
+OUTPUT ： 分词后的训练样本
+@usage
+python word_segment.py  –i  input_file  [–o  output_file]  [ -p 任意字符]
+-i  指训练样本名
+-o 指文本分词后的存放路径，默认输出在控制台上
+-p 指定训练过程的分词处理还是测试过程的分词处理
+     默认 训练过程
+     不为空: 表示训练过程的分词处理
+      默认为训练过程的分词处理
+eg. python word_segment.py  -i  ../sample/post.train -o ../data/segmented_post.train 
+
+
+
+2.     特征选择（feature_selection.py）
+@brief 
+  特征选择的主程序，输入指定的文件，先进行文本降噪，然后自动生成词典，并根据卡方公式进行特征选择。
+INPUT：  第一步处理中分词后的训练样本
+OUTPUT：生成的特征词典，词典格式如下：No.  +  特征词 + 特征权重
+@usage
+python feature_selection.py  –i  input_file –d  key_dic   [-s  stopword_file ]   [-g  global_fun]
+    -i  待处理的文件名
+    -d  用户自定义特征词典名
+    -s 停用词表，默认为“无”
+    -g 全局权重计算方式
+         “one” ;
+         ”idf”  ;
+         “rf”   .
+eg. python feature_selection.py -i ../data/temp/segmented_post.train -d  dic.key -s ../conf/stopwords.txt -g idf
+
+
+
+3.     libsvm格式构造（cons_trainsample_for_libsvm.py）
+@brief
+   将已经分好词的文件转换成libsvm的输入格式
+INPUT：    第一步处理中分词后的训练样本 + 第二步生成的特征词典
+OUTPUT： 生成的libsvm输入格式的文件（<label> <index1>:<value1> <index2>:<value2> ... ）
+@usage
+python cons_trainsample_for_libsvm.py  - i 训练文本的文件名   -d 词典文件名   -o 结果文件保存位置
+eg. python cons_trainsample_for_libsvm.py -i  ../data/segmented_post.train  -d  ../data/model/dic.key  -o ../data/temp/svm.train
+
+
+
+4.     SVM参数搜索（svm_c_g_param.py）
+@brief
+   对svm的参数进行搜索 ,如果是libsvm则搜索 (c,gamma) ，如果是 liblinear则搜索 (c)。当训练样本的容量大于 3000时就会在粗粒度搜索时使用子集，子集的大小为 [3000,5000] 范围内。
+INPUT:     第三步中libsvm格式构造文件
+OUTPUT:  搜索过程保存文件+ c值+g值
+@usage
+python svm_c_g_param.py  -i libsvm格式文件  [-o 结果文件]  [-s svm类型] [-c 配置文件]
+   -i 文件转换成的libsvm训练格式文件名
+   -o 结果保存文件，默认为../data/svm.param
+   -s 选择svm类型，1表示libsvm，2表示liblinear，默认为libsvm
+   -c 传入配置文件
+eg. python svm_c_g_param.py -i ../data/temp/svm.train -o ../data/temp/svm_param -s 1
+
+
+
+5.     模型训练（train_svm.py）
+@brief
+  训练模型程序。输入参数，可以训练 libsvm与 liblinear的模型。
+INPUT:      第三步中libsvm格式构造文件+c值+g值
+OUTPUT:   样本训练的模型
+@usage
+python train_svm.py -i  libsvm格式文件名 -o 模型保存名  [-s svm类型] [-c 配置文件名] [-p 是否选择概率评估模式]
+   -s  选择svm类型，默认为libsvm
+eg. python train_svm.py -i ../data/temp/svm.train  -o ../data/model/svm.model -s 1 
+
+
+
+6.     模型预测（predict_post.py）
+@brief
+   此函数为文本 SVM分类模型预测程序，给定测试文本及设置相应参数，即可为样本进行预测。
+INPUT:      微博测试样本名 + 配置文件（训练模型+ 预处理参数+ c值+g值）
+                   SvmType:libsvm                                        (svm类型)
+                   SvmParam:-t 2 -c 64 -g 0.353553390593     (-t:libsvm 参数 -c：惩罚因子 -g: 核函数参数)
+                   DicName:dic.key                                        (特征词典)
+                   ModelName:svm.model                               (训练模型)
+                   LocalFun:tf                                                 ( 局部权重计算方法)
+                   GlobalFun:idf                                              (全局权重计算方法)
+                   WordSeg:1                                                  (分词方法)
+                   Date:2013-10-11-15-59-34                           (运行时间)
+                   Labels:{1,-1,}                                              (分类标签)
+OUTPUT:   结果文件包含三列，预测标签、预测分值、真实标签
+@usage
+python predict_post.py  -i 测试样本名   -c  配置文件名 [-o 预测结果文件名] [-p 是否选择概率评估模式]
+   -o 预测结果文件 默认输出到控制台
+eg.python predict_post.py  -i ../data/temp/svm.train   -o  ../data/tms.result
+
+
+7.     结果分析（analysis_result.py）
+@brief
+   可以对分类的结果进行统计分析。包括分类准确率、 F值、召回率、准确率、宏观分类准确率、微观分类准确率、设定阈值的 F值、召回率、准确率。
+INPUT： 第六步模型预测的生成文件
+OUTPUT：分类准确率，覆盖率，设定阈值的F值
+@usage
+python analysis_result.py -i 模型预测结果文件   [ -o 分析结果文件]
+     -o  默认为输出到控制台
+eg. python analysis_result.py -i ../data/tms.result -o ../data/results.analysis 

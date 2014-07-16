@@ -1,0 +1,109 @@
+本文件夹下为短文本分类的训练和预测代码
+其中Train_model.sh 和 predict_model.sh分别为模型训练和测试的shell脚本
+两个脚本文件的用法及详细内容如下
+
+一： 训练模型脚本 Train_model.sh
+    @brief
+    模型训练串连脚本,训练模型时运行Train_model.sh脚本则可，下面的是该脚本下包含的子脚本
+   INPUT  ： 训练样本 
+              模型名(不带路径)
+   OUTPUT ：  训练模型(存储在"../data/model"下)
+   @usage
+   source Train_Model_Runall.sh <训练样本> <模型名>
+
+
+1，Sed去噪(pre_process.sh)
+  @brief
+    样本的初步去噪（去特殊符号、英文字母、数字、url ...）
+   INPUT  ： 待去噪样本（Runall.sh中传入）
+   OUTPUT ： 去噪后的样本(保存为该文件夹下的post.train.clear文件)
+   @usage
+   sh pre_process.sh <待去噪样本文件名 > <去噪后样本>
+
+ 2, 分词（word_segment.sh）
+  @brief
+    用中科院ＮＬＰ分词工具进行分词处理
+   INPUT  ： 去噪后样本(由pre_process.sh传入)
+   OUTPUT ： 分词后样本 (保存在"../data/temp/"中)
+   @usage
+   sh word_segment.sh <去噪后样本 > <分词后样本>
+
+3, 特征提取（feature_selection.sh）
+  @brief
+    用中科院ＮＬＰ分词工具进行分词处理
+   INPUT  ： 分词后样本（由 word_segment.sh传入）
+   OUTPUT ： 保存生成的特征词典(保存为"../data/model/dic.key")
+   @usage
+   sh feature_selection.sh <分词后样本>
+
+4,libsvm格式文件构造（cons_trainsample_for_libsvm.sh）
+  @brief
+     搜寻模型训练参数
+   INPUT  ： 分词后样本（由 word_segment.sh传入）
+   OUTPUT ：  libsvm格式文件(保存为"../data/temp/svm.train")
+   @usage
+   sh cons_trainsample_for_libsvm.sh <分词后样本> < libsvm格式文件>
+
+5,c_g参数搜寻（svm_c_g_param.sh）
+   @brief
+     搜寻模型训练参数
+   INPUT  ： libsvm格式文件（由 cons_trainsample_for_libsvm.sh传入）
+   OUTPUT ：  c,g参数，写入到配置文件中(保存为"../data/model/post.config")
+   @usage
+   sh svm_c_g_param.sh <分词后样本> < libsvm格式文件>
+
+6, 模型训练(train_svm.sh)
+   @brief
+    训练模型
+   INPUT:     libsvm格式构造文件（由cons_trainsample_for_libsvm.sh传入）；
+                  模型选择参数(由Runall.sh传入)
+                   
+   OUTPUT:    样本训练的模型（保存在"../data/model/文件夹下"）
+   @usage
+   sh train_svm.sh <libsvm格式文件> <模型名>
+
+
+二：预测模型脚本 predict_model.sh
+ @usage
+ source predict_model.sh <测试样本> <预测结果文件> <结果分析文件>
+
+ 1,Sed去噪(pre_process.sh)
+  @brief
+    样本的初步去噪（去特殊符号、英文字母、数字、url ...）
+   INPUT  ： 待去噪样本（Runall.sh中传入）
+   OUTPUT ： 去噪后的样本
+   @usage
+   sh pre_process.sh <待去噪样本文件名 > <去噪后样本>
+
+ 2, 分词（word_segment.sh）
+  @brief
+    用中科院ＮＬＰ分词工具进行分词处理
+   INPUT  ： 去噪后样本（由pre_process.sh传入）
+   OUTPUT ： 分词后样本
+   @usage
+   sh word_segment.sh <去噪后样本 > <分词后样本>
+
+ 3,libsvm格式文件构造（cons_trainsample_for_libsvm.sh）
+  @brief
+     搜寻模型训练参数
+   INPUT  ： 分词后样本（由 word_segment.sh传入）
+   OUTPUT ：  libsvm格式文件
+   @usage
+   sh cons_trainsample_for_libsvm.sh <分词后样本> < libsvm格式文件>
+
+ 4,预测样本(predict_post.sh)
+  @brief
+      预测样本分类
+   INPUT  ： libsvm格式文件（由 cons_trainsample_for_libsvm.sh传入）
+   OUTPUT ： 预测结果文件
+   @usage
+   sh cons_trainsample_for_libsvm.sh < libsvm格式文件> <预测结果文件>
+
+ 5,分析预测结果(ananlysis.sh)
+   @brief
+       分析预测结果
+   INPUT  ： 预测结果文件（由predict_post.sh传入）
+   OUTPUT ： 结果分析文件
+   @usage
+   sh ananlysis.sh <预测结果文件 > <结果分析文件>
+
