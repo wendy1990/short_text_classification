@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/174/trunk/dependence
+END
+mmseg.so.64
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/153/trunk/dependence/mmseg.so.64
+END
+mmseg.dll
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/117/trunk/dependence/mmseg.dll
+END
+porter2.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/174/trunk/dependence/porter2.py
+END
+liblinearutil.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/120/trunk/dependence/liblinearutil.py
+END
+liblinear.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/164/trunk/dependence/liblinear.py
+END
+svmutil.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/117/trunk/dependence/svmutil.py
+END
+words.dic
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/117/trunk/dependence/words.dic
+END
+svm.py
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/174/trunk/dependence/svm.py
+END
+chars.dic
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/117/trunk/dependence/chars.dic
+END
+libsvm.so.32
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/153/trunk/dependence/libsvm.so.32
+END
+liblinear.so.32
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/153/trunk/dependence/liblinear.so.32
+END
+libsvm.so.64
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/153/trunk/dependence/libsvm.so.64
+END
+libsvm.dll
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/117/trunk/dependence/libsvm.dll
+END
+pymmseg.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/164/trunk/dependence/pymmseg.py
+END
+liblinear.so.64
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/153/trunk/dependence/liblinear.so.64
+END
+liblinear.dll
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/119/trunk/dependence/liblinear.dll
+END
+mmseg.so.32
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/153/trunk/dependence/mmseg.so.32
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/154/trunk/lsa_src
+END
+lsa_train.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/125/trunk/lsa_src/lsa_train.py
+END
+lsa_tms_predict.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/154/trunk/lsa_src/lsa_tms_predict.py
+END
+lsa.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/125/trunk/lsa_src/lsa.py
+END
+lsa_tms_train.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/154/trunk/lsa_src/lsa_tms_train.py
+END

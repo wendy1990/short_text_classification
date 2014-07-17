@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/svn/!svn/ver/157/trunk/java
+END
+liblinear-1.8.jar
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/114/trunk/java/liblinear-1.8.jar
+END
+SvmPredict.java
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/113/trunk/java/SvmPredict.java
+END
+SvmResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/157/trunk/java/SvmResult.java
+END
+TmsModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/157/trunk/java/TmsModel.java
+END
+SvmModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/157/trunk/java/SvmModel.java
+END
+libsvm.jar
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/24/trunk/java/libsvm.jar
+END
+SvmNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/157/trunk/java/SvmNode.java
+END
+TmsPredict.java
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/157/trunk/java/TmsPredict.java
+END

@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/svn/!svn/ver/176/trunk/src
+END
+tms_svm.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/168/trunk/src/tms_svm.py
+END
+feature_select.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/161/trunk/src/feature_select.py
+END
+predict.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/150/trunk/src/predict.py
+END
+grid_search_param.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/166/trunk/src/grid_search_param.py
+END
+example.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/173/trunk/src/example.py
+END
+train_model.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/176/trunk/src/train_model.py
+END
+measure.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/161/trunk/src/measure.py
+END
+segment.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/173/trunk/src/segment.py
+END
+tms.py
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/176/trunk/src/tms.py
+END
+auto_train.py
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/154/trunk/src/auto_train.py
+END
+stem.py
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/175/trunk/src/stem.py
+END
+corpus_process.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/125/trunk/src/corpus_process.py
+END
+predict_model.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/173/trunk/src/predict_model.py
+END
+fileutil.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/125/trunk/src/fileutil.py
+END
+train.py
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/154/trunk/src/train.py
+END
+test.py
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/175/trunk/src/test.py
+END
+ctmutil.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/125/trunk/src/ctmutil.py
+END
+utility_tools.py
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/79/trunk/src/utility_tools.py
+END
