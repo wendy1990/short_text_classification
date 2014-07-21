@@ -8,7 +8,7 @@ author: Felix Liang
 date: 2013-10-30
 """
 import sys
-sys.path.append("../../../../external/TMSVM/src")
+sys.path.append("../external/TMSVM/src")
 import os
 import argparse
 import tms

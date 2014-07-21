@@ -9,7 +9,7 @@ date: 2013-10-30
 """
 import sys
 import os
-sys.path.append("../../../../external/TMSVM/src")
+sys.path.append("../external/TMSVM/src")
 import argparse
 import tms
 import time

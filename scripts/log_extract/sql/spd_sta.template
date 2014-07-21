@@ -1,0 +1,52 @@
+--统计FengYi的爬虫效率指标
+set hive.exec.compress.output='false';
+
+use fy_log;
+--生成爬虫效率列表
+--字段：spider_id, MAC, IP, 领取任务数, 上报page数, 平均抓取时间
+
+insert overwrite local directory '{LOC_TMP_DIR}'
+select 
+    ss.spider_id, box_id, location, MAC, cur_IP, schedule_task, collect_page, round(avg_time, 2)
+from (
+    select
+        spider_id, MAC, cur_IP, box_id, location
+    from
+        spider_status
+    where
+        dt='{yyyy-mm-dd}'
+)ss
+join(
+    select
+        spider_id, count(task_seq) as schedule_task
+    from
+        task_allocation
+    where
+        dt='{yyyy-mm-dd}'
+    group by
+        spider_id
+)ta
+on (ss.spider_id=ta.spider_id) 
+join(
+    select        
+        spider_id, sum(page_num) as collect_page,
+        sum(unix_timestamp(end_time)-unix_timestamp(start_time)) / sum(url_num)
+            as avg_time
+    from
+        task_collect tc
+        join(
+            select 
+                task_seq, url_num
+            from
+                task_allocation
+            where dt='{yyyy-mm-dd}'
+        )tmp_ta
+        on  (tmp_ta.task_seq=tc.task_seq)
+    where
+        tc.dt='{yyyy-mm-dd}'
+    group by
+        spider_id
+)tca
+on (ss.spider_id=tca.spider_id)
+order by {ORDER_FIELD} {ORDER_TYPE}
+{LIMIT_COUNT};

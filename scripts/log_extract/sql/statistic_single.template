@@ -1,0 +1,28 @@
+--统计FengYi的几种覆盖、爬取效率指标
+--NOTE:假定在同一个date下，task_seq值唯一，发布与回收的URL不唯一
+set hive.exec.compress.output='false';
+
+use fy_log;
+--统计发布任务数
+select count(distinct(task_seq)) from task_allocation where dt='{yyyy-mm-dd}';
+
+--统计发布URL数 
+select count(url) from allocation_task_url_map where dt='{yyyy-mm-dd}';
+
+--统计收集任务数
+select count(distinct(task_seq)) from task_collect where dt='{yyyy-mm-dd}';
+
+--统计有效任务数
+select count(distinct(task_seq)) from collect_task_url_map
+    where dt='{yyyy-mm-dd}';
+
+--统计有效URL数
+select count(url) from collect_task_url_map
+    where dt='{yyyy-mm-dd}';
+
+--统计有效page数
+select sum(page_num) from task_collect where dt='{yyyy-mm-dd}';
+
+--统计平均任务时间
+select avg(unix_timestamp(end_time)-unix_timestamp(start_time))
+    from task_collect where dt='{yyyy-mm-dd}';

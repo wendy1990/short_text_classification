@@ -1,0 +1,80 @@
+--统计FengYi的几种覆盖、爬取效率指标
+--NOTE:假定在同一个date下，task_seq值唯一
+set hive.exec.compress.output='false';
+--set mapred.reduce.tasks = 1;
+use fy_log;
+--统计发布任务数/发布URL数/收集任务数/有效任务数/有效URL数/有效page数/平均任务时间
+
+--统计发布任务数/发布URL数
+
+insert overwrite local directory '{LOC_TMP_DIR}'
+select
+    *
+from
+    (
+        select    concat_ws('_', '1', string(count(distinct(ta.task_seq)))) as overall
+        from      task_allocation ta
+        where     ta.dt='{yyyy-mm-dd}'
+        union all
+        select    concat_ws('_', '2', string(count(atum.url))) as overall
+        from      allocation_task_url_map atum
+        where     atum.dt='{yyyy-mm-dd}'
+        union all
+        select    concat_ws('_', '3', string(count(distinct(tc.task_seq)))) as overall
+        from      task_collect tc
+        join
+            (
+                  select distinct(task_seq) from task_allocation where dt='{yyyy-mm-dd}'
+            )tmp_ta
+        on  (tmp_ta.task_seq=tc.task_seq)
+        where     tc.dt='{yyyy-mm-dd}'
+        union all
+        select    concat_ws('_', '4', string(count(distinct(ctum.task_seq)))) as overall
+        from      collect_task_url_map ctum
+        join
+            (
+                  select distinct(task_seq) from task_allocation where dt='{yyyy-mm-dd}'
+            )tmp_ta
+        on  (tmp_ta.task_seq=ctum.task_seq)
+        where     ctum.dt='{yyyy-mm-dd}'
+        union all
+        select    concat_ws('_', '5', string(count(ctum.url))) as overall
+        from      collect_task_url_map ctum
+        join
+            (
+                  select distinct(task_seq) from task_allocation where dt='{yyyy-mm-dd}'
+            )tmp_ta
+        on  (tmp_ta.task_seq=ctum.task_seq)
+        where     ctum.dt='{yyyy-mm-dd}' and url rlike '[^a-zA-Z]weibo[^a-zA-Z]|t\.qq|[^ci]t\.sohu'
+        union all
+        select    concat_ws('_', '6', string(count(ctum.url))) as overall
+        from      collect_task_url_map ctum
+        join
+            (
+                  select distinct(task_seq) from task_allocation where dt='{yyyy-mm-dd}'
+            )tmp_ta
+        on  (tmp_ta.task_seq=ctum.task_seq)
+        where     ctum.dt='{yyyy-mm-dd}' and not url rlike '[^a-zA-Z]weibo[^a-zA-Z]|t\.qq|[^ci]t\.sohu'
+        union all
+        select    concat_ws('_', '7', string(sum(tc.page_num))) as overall
+        from      task_collect tc
+        join
+            (
+                  select distinct(task_seq) from task_allocation where dt='{yyyy-mm-dd}'
+            )tmp_ta
+        on  (tmp_ta.task_seq=tc.task_seq)
+        where     tc.dt='{yyyy-mm-dd}'
+        union all
+        select    concat_ws('_', '8', string(round(avg(unix_timestamp(tc.end_time)-unix_timestamp(tc.start_time)), 2))) as overall
+        from      task_collect tc
+        join
+            (
+                  select distinct(task_seq) from task_allocation where dt='{yyyy-mm-dd}'
+            )tmp_ta
+        on  (tmp_ta.task_seq=tc.task_seq)
+        where     tc.dt='{yyyy-mm-dd}'
+    ) overall_table
+order by
+    overall;
+
+

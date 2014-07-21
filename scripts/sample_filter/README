@@ -1,0 +1,27 @@
+样本去重脚本
+	by max.zhang@2013-12-25
+brief: 此模块从fengyi下载的原始page数据中提取出长短文本，进行预处理和去重后用于预测模型的训练
+
+[FILE]
+--sample_filter.sh:	主运行脚本，根据url从fengyi的page数据中解析出长短文本并分别调用去重脚本
+--filter_duplicate.sh:	文本去重脚本，对长/短文本数据进行去噪、指纹提取并采用hamming距离除去重复文本
+--webcontent_filter.sh:	文本预处理脚本，除去不可打印的字符、数字、字母，合并多个空白符
+d--python:	python脚本目录
+	--tokens.py		jieba分词脚本
+	--DictBuilder.py	特征词典构建脚本
+	--SimhashMapper.py	Simhash指纹提取的streaming脚本
+	--Utils.py		工具模块，包含hamming距离函数
+	--FilterSalientBySimhashNoScore.py	根据Simhash指纹进行去重
+	--get_row_sample.py	根据原始文本文件和去重后的行号文件生成去重后的样本
+
+[TO DO]
+1.获取爬虫下载的page数据
+	hadoop fs -get /test/windbell/fengyi/pages/2013/12/22 data/
+2.数据转换
+	cat data/22/* > 22.content
+3.[自去重]启动抽取脚本，生成去重后的_uniq.rowfprint文件
+	sh sample_filter.sh data/22.content
+4.[与已有样本去重]根据已有样本的.rowfprint文件和生成的_uniq.rowfprint文件生成新样本的_uniq_new.rowfprint文件
+	python python/FilterSalientBySimhashNoScore.py data/22_uniq.rowfprint data/ori_sample.rowfprint  data/22_uniq_new.rowfprint
+5.生成去重后的新样本数据
+	python get_row_sample.py data/22.content data/22_uniq_new.rowfprint > 22_uniq_new.sample

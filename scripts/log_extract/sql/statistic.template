@@ -1,0 +1,43 @@
+--统计FengYi的几种覆盖、爬取效率指标
+--NOTE:假定在同一个date下，task_seq值唯一
+set hive.exec.compress.output='false';
+
+use fy_log;
+--统计发布任务数/发布URL数/收集任务数/有效任务数/有效URL数/有效page数/平均任务时间
+
+--统计发布任务数/发布URL数
+insert overwrite local directory '/home/app/hive_res/allocation'
+select 
+    count(distinct(ta.task_seq)) as schedule_task,
+    count(atum.url) as schedule_url
+from
+    task_allocation ta
+    join
+        allocation_task_url_map atum
+    on(
+        ta.task_seq=atum.task_seq
+    )
+where
+    ta.dt='{yyyy-mm-dd}'
+    and atum.dt='{yyyy-mm-dd}';
+
+--统计收集任务数/有效page数/平均任务时间
+insert overwrite local directory '/home/app/hive_res/collect'
+select
+    count(distinct(tc.task_seq)) as collect_task,
+    sum(tc.page_num) as valid_page,
+    avg(unix_timestamp(tc.end_time)-unix_timestamp(tc.start_time)) as avg_time
+from
+    task_collect tc
+where
+    tc.dt='{yyyy-mm-dd}';
+
+--统计有效任务数/有效URL数
+insert overwrite local directory '/home/app/hive_res/collect_map'
+select
+    count(distinct(ctum.task_seq)) as valid_task,
+    count(ctum.url) as valid_url
+from
+    collect_task_url_map ctum
+where
+    ctum.dt='{yyyy-mm-dd}';

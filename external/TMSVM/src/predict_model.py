@@ -45,6 +45,7 @@ def predict_rsl(config_file,data_file_name,result_save_path,param):
            print "Find model"
      """
      option = '-b '+str(param)
+     print config_file
      model=load_tms_model(config_file)[3]
      print model
      print "-----------------正在对样本进行预测-------------------\n"

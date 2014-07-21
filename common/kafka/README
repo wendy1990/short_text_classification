@@ -1,0 +1,3 @@
+KAFKA High Level接口封装
+
+适用KAFKA 0.8版本以上, 底层使用LibKafka

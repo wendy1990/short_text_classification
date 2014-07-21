@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META content=3D"text/html; charset=3Dgb2312" http-equiv=3DContent-Type>
+<STYLE>
+BLOCKQUOTE {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; MARGIN-LEFT: 2em
+}
+OL {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+UL {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+BODY {
+	LINE-HEIGHT: 1.5; FONT-FAMILY: =CE=A2=C8=ED=D1=C5=BA=DA; COLOR: #000000; F=
+ONT-SIZE: 10.5pt
+}
+</STYLE>
+
+<META name=3DGENERATOR content=3D"MSHTML 8.00.7600.17267"></HEAD>
+
+<BODY style="MARGIN: 10px"><DIV>
+<TABLE style="BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-COLLAPSE: collapse; FONT-SIZE: 10pt; BORDER-TOP: medium none; BORDER-RIGHT: medium none" border=1 cellSpacing=0 borderColor=#000000 cellPadding=2 width="50%">
+<CAPTION><FONT size=2 face=Verdana>日志总览</FONT></CAPTION>
+<TBODY>
+<TR>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>Field</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>schedule_task</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>schedule_url</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>collect_task</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>valid_task</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>valid_url[weibo]</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>valid_url[news]</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>valid_page</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>avg_time</DIV></FONT></TD></TR>
+<TR>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>Comment</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>发布任务数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>发布URL数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>收集任务数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>有效任务数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>有效微博数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>有效网页数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>有效page数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="12%" noWrap><FONT size=2 face=Verdana>
+<DIV>平均任务时间</DIV></FONT></TD></TR>
+{OVERALL_ROW}
+</TBODY></TABLE></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>
+<TABLE style="BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-COLLAPSE: collapse; FONT-SIZE: 10pt; BORDER-TOP: medium none; BORDER-RIGHT: medium none" border=1 cellSpacing=0 borderColor=#000000 cellPadding=2 width="50%">
+<CAPTION><FONT size=2 face=Verdana>Spider效率</FONT></CAPTION>
+<TBODY>
+<TR>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>Field</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>spider_id</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>box_id</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>location</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>MAC</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>IP</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>schedule_task</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>valid_page</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>avg_time</DIV></FONT></TD></TR>
+<TR>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>Comment</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>爬虫ID号</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>盒子ID号</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>盒子位置</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>物理地址</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>IP地址</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>领取任务数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>上报page数</DIV></FONT></TD>
+<TD style="BORDER-BOTTOM: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-RIGHT: #000000 1px solid" width="14%" noWrap><FONT size=2 face=Verdana>
+<DIV>URL平均抓取时间</DIV></FONT></TD></TR>
+{SPIDER_ROW_ID_ASC}
+</TBODY></TABLE></DIV>
+<DIV>&nbsp;</DIV>
+<HR style="WIDTH: 210px; HEIGHT: 1px" id=FMSigSeperator align=left color=#b5c4df SIZE=1>
+<DIV>
+<DIV style="COLOR: rgb(0,0,0)"><SPAN style="TEXT-ALIGN: justify; LINE-HEIGHT: normal; FONT-FAMILY: 宋体; COLOR: rgb(153,153,153); FONT-SIZE: 10pt">本邮件载有秘密信息，请您恪守保密义务，勿向第三人透露。如果您不是正确的收件人，请您立即删除此邮件，谢谢合作。</SPAN><SPAN style="TEXT-ALIGN: justify; LINE-HEIGHT: normal; FONT-FAMILY: Arial, sans-serif; COLOR: rgb(153,153,153); FONT-SIZE: 10pt" lang=EN-US><BR></SPAN><SPAN style="TEXT-ALIGN: justify; LINE-HEIGHT: normal; FONT-FAMILY: Arial, sans-serif; COLOR: rgb(153,153,153); FONT-SIZE: 8pt" lang=EN-US>This email communication is confidential. Recipient(s) named above is(are) obligated to maintain secrecy and is(are) not permitted to disclose the contents of this communication to others.&nbsp;<BR>If you are not the right person to receive this mail, please delete it immediately. Thank you.</SPAN></DIV></DIV>
+</BODY>
+</HTML>
+

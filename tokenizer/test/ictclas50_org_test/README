@@ -1,0 +1,2 @@
+中科院分词器原始分词，带词性的分词
+Usage:./seg  file_input file_output

@@ -1,0 +1,1 @@
+content:收费收入味儿--++++--title:算法--++++--id:0--++++--alarm_locations:"资阳 	简阳 	成都"--++++--customKey:customKey--++++--predict_type:predict_type--++++--score:1.0--++++--alarm_location_codes:"ZY 	ZY_JY 	CD"--++++--seg_content:"上来 房间 卡萨 解放路"--++++--msg_type:negtive

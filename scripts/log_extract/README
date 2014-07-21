@@ -1,0 +1,69 @@
+Fengyi日志抽取脚本v0.2
+    modified max.zhang  @2013-12-26
+[FILE]
+    execute_fy_log.sh		[main entry]该脚本完成FengYi日志的抽取、统计和报表
+    extract_fy_log.sh		[extract entry]该脚本完成FengYi日志的抽取
+    statistic_fy_log.sh		[statistic entry]该脚本根据FengYi log提取结果，统计封姨每天的抓取状态，具体see sql
+    sql/
+    --statistic_union.template	统计FengYi的几种覆盖、爬取效率指标[union all方式, update]
+    --statistic.template	功能同上[三次select和insert, old]
+    --statistic_single.template	功能同上[分别select，重定向查询结果到文件, old]
+    --spd_std.template		统计FengYi的爬虫效率指标[join方式, update]
+    --spd_std.bak		功能同上[备份, old]
+    python/
+    --send_fy_log_mail.py	FengYi日志邮件发送脚本[update]
+    --send_mail.py		原始的邮件发送脚本[old]
+
+[TO DO]
+	1.日志抽取
+		sh extract_fy_log.sh `date +%F -d yesterday`
+	2.日志统计
+		sh statistic_fy_log.sh `date +%F -d yesterday`
+	3.抽取+统计
+		sh execute_fy_log.sh `date +%F -d yesterday`
+    
+---------------------------------------------------------------------------------------
+Fengyi日志抽取脚本v0.1
+    by max.zhang @2013-12-08
+[FILE]
+    sql/
+    --create_fy_log.sql	在Hive中创建fy_log数据库与日志记录数据表
+    --load_fy_log.sql	向Hive中的数据表载入本地数据(static路径)
+    python/
+    --spider_status.py	spider_status文件的信息抽取
+    --log_extract.py	本地日志抽取，给定日期和输出目录，对log目录(static路径)下的2种log文件生成4个log记录表
+    shell/
+    --local_report.sh	调用当前节点上的log_extract.py和spider_status.py(static路径),
+			将生成的log记录表put到HDFS上
+    --fy_log_report.sh	log抽取的启动脚本：创建log记录表的HDFS目录，调用各节点local_report.sh，整合结果载入
+                        Hive，进行统计后发送邮件
+[TO DO]
+    1.配置路径
+        --本地抽取节点
+          a.local_report.sh
+            --[line 12]:	设置python脚本所在目录 cd /home/max.zhang/git/bigben/scripts/log_extract/python
+            --[line 14]:	设置本地临时文件夹 tmp_path=/home/max.zhang/tmp/local
+            --[line 21]:	调用log_extract.py时设置本地log目录以及要生成的表名
+				python log_extract.py $1 "/home/elvin.xu/fengyi" $tmp_path "ALL"
+            --[line 23]:	设置spider_status.txt的路径
+				python spider_status_extract.py "/home/elvin.xu/fengyi/release/test/spider_status.txt" $tmp_path
+        --远程启动节点
+          a.fy_log_report.sh
+            --[line 15]:	设置当前日期的log记录表在HDFS中的路径
+				dfs_log_path="/test/max.zhang/log_statistics/Fengyi/$date"
+            --[line 18-19]:	设置脚本文件路径
+				shell_path="/home/max.zhang/git/bigben/scripts/log_extract/shell" [*可选，节点的local_report路径]
+				sql_path="/home/max.zhang/git/bigben/scripts/log_extract/sql" [本地的load_fy_log.sql路径]
+            --[line 29]:	设置用于载入hive数据的临时文件夹  tmp_root="/home/max.zhang/tmp/log4hive"
+    2.配置日志抽取节点
+        --fy_log_report.sh
+          --[line 26]:		设置节点IP与节点ID
+				ssh 10.1.160.4 "sh $shell_path/local_report.sh $date $dfs_log_path"
+    3.在Hive中创建数据库与数据表[已完成]
+        hive -f 'PATHTO_create_fy_log.sql'
+    4.在HDFS中创建日志存储目录(已完成)
+        hadoop fs -mkdir /test/max.zhang/log_statistics/Fengyi
+    5.配置ssh成自动登录
+        cat ~/.ssh/id_rsa.pub >> authorized_keys
+    6.启动日志抽取脚本
+        sh fy_log_report.sh `date -d yesterday +%F`

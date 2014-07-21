@@ -11,7 +11,7 @@ import sys
 import os
 import time 
 import argparse
-sys.path.append("../../../../external/TMSVM/src")
+sys.path.append("../external/TMSVM/src")
 import tms
 
 def parser():

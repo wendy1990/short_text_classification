@@ -1,0 +1,31 @@
+Ice服务端与客户端[PageMarkServer|TextClassificationServer]的测试脚本
+Author	max.zhang
+Date	2013-12-11
+Brief	Server.py => 输出Ice客户端传来的Page参数
+	Client.py => 向Ice服务端传入Page参数
+
+[TO DO]
+Server.py
+1.设置conf.server参数
+    #PageMarkServer.Endpoints=tcp -h localhost -p 2888 
+    TextClassificationServerInterface.Endpoints=tcp -h localhost -p 10000
+2.启动Server.py
+    Usage:	python Server.py {PageMarkServer | TextClassificationServer} config.server
+
+Client.py
+1.设置conf.client参数[note: TestPageMark需与Server中适配器启动的对象名一致,i.e.stringToIdentify('TestPageMark')]
+    PageMarkServerInterface.Proxy=TestPageMark:tcp -h localhost -p 2888
+    TextClassificationServerInterface.Proxy=TestTextClassification:tcp -h localhost -p 10000
+2.启动Client.py
+    Usage:	python Client.py {PageMarkServer | TextClassificationServer} config.client input.txt
+
+[Dependence]
+1.需在Server.py中指定Ice的python库路径
+    import sys, os
+    ice_path = '/home/max.zhang/external/ice4py/python'
+    sys.path.append(ice_path)
+2.需在Server.py中导入*.ice文件
+    import Ice, traceback
+    Ice.loadSlice('PageMark.ice')
+    Ice.loadSlice('textClassification.ice')
+
