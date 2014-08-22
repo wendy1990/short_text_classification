@@ -1,0 +1,42 @@
+	词库说明
+	Author:eric.zhang        Date: 2013-12-19
+一、标准词库
+(1)jieba_dict_and_sogou_big_stand_dict_ict_seg_multi.txt
+	该词库的生成过程如下：	
+	首先将结巴的词库和搜狗标准大词库合并，去重，然后用中科院的ICTCLAS50分词器分词，得到被分开的词 488188个。
+
+(2)jieba_dict_and_sogou_big_stand_dict_yebol_seg.txt
+	将（1）中的词库使用yebol（http://www.yebol.com.cn/index.jsp）进行分词和词性标注，得到分词结果。
+
+(3)jieba_dict_and_sogou_big_stand_dict_yebol_seg_one.txt
+	将（2）中的结果，提出未被分开的词，作为将要导入的词典中的词库。
+
+(4)jieba_dict_and_sogou_big_stand_dict_2_ict.txt
+	转换词性之后可以导入的用户词典中的词库。
+	从（3）——>(4)的转换过程如下：sed -f ../scripts/yebol_2_ict.sed jieba_dict_and_sogou_big_stand_dict_yebol_seg_one.txt > jieba_dict_and_sogou_big_stand_dict_2_ict.txt
+
+二、地名词库
+(1)alarm_place_name_2646.txt
+	报警地名词库，将报警地的全称和归一化名称合并，去重，并标注词性ns
+
+三、alarm_person_name_15.txt 人名词库
+    词性标为ns.
+
+四、全国地名词典china_place_name.txt
+    全国地名词典中，ict分词有问题的词。
+
+五、用户词典汇总
+    因为只能导入一个用户词典所以需要将用户词典合成一个词典，汇总的时候需要考虑词典的先后顺序，顺序如下：
+    报警地名词典-->报警人名词典-->全国地名词典-->标准词典-->纠正词典 
+    注意：首行留空！！
+
+
+注意：
+(1)以上词库，默认已经导入用户词典，如果需要删除用户词典并重新配置，需要删除/bigben/src/tokenizer/external/ictclas50/Data目录下的三个文件：
+	UserDict.map
+	UserDict.pdat
+	UserDict.pos
+(2)首次使用用户词典需要导入，如果保存到用户词典中，再次启用是若配置中使用用户词典项为On，则会自动从用户词典中自动加载，无需再次导入！
+(3) 导入用户词典的方法，参考/bigben/src/tokenizer/README
+
+         

@@ -4,7 +4,7 @@
 module: feature_selection.py
 usage: python feature_selection.py -i <inputfile> [-d  dic.key] [-s <stopwords file>] [-g globalfun]
 desc: This is used to choose features
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys
@@ -48,10 +48,10 @@ def process(parse_result):
             global_fun =parse_result.global_fun.strip()
         # processing with not deleting stopwords
         if stop_file == None:
-            tms.tms_feature_select(input_file,global_fun=global_fun,main_save_path='../data/',dic_name=dic_key,str_splitTag="^",ratio=0.4)
+            tms.tms_feature_select(input_file,global_fun=global_fun,main_save_path='../data/',dic_name=dic_key,str_splitTag=" ",ratio=0.4)
         else:
         # processing with deleting stopwords
-            tms.tms_feature_select  (input_file,global_fun=global_fun,main_save_path='../data/',dic_name=dic_key,stopword_filename=stop_file,str_splitTag="^",ratio=0.4)
+            tms.tms_feature_select  (input_file,global_fun=global_fun,main_save_path='../data/',dic_name=dic_key,stopword_filename=stop_file,str_splitTag=" ",ratio=1.0)
         print "第二步---<特征选择>的处理结果：\n"
         # Save the some training parameters
         with open('../data/model/post.config','a+') as f_config:

@@ -4,7 +4,7 @@
 module: word_segment.py
 usage: python word_segment.py -i <input_file> [-o <store_file>]
 desc: This is used to segment text file
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys

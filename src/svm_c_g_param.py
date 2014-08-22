@@ -4,7 +4,7 @@
 module: cons_trainsample_for_libsvm.py
 usage:  python svm_c_g_param.py -i <libsvm-format file> -o <output_file> [-s svm_type]
 desc: This is used to search the best 'c' value and 'g' value
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys

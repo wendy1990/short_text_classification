@@ -4,7 +4,7 @@
 module: predict_post.py
 usage:  python analysis_result.py -i <predict-result_file> [-o <result-analysis-file>]
 desc: This is used to analysis the predict results
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys

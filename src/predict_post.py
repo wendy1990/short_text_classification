@@ -4,7 +4,7 @@
 module: predict_post.py
 usage:  python predict_post.py -i <test_file> [-o <predict-result file>] [-b probability or not]
 desc: This is used to predict the model
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys

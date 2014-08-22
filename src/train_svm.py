@@ -4,7 +4,7 @@
 module: train_svm.py
 usage:  python train_svm.py -i <libsvm-format file> -o <model_file> [-s svm_type] [-b probability or not]
 desc: This is used to train a model
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys

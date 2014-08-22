@@ -1,0 +1,78 @@
+中文分词器封装
+
+                             By Eric.Zhang
+说明：本程序封装了ICTCLAS50版本中文分词器，生成动态库,并实现了一个分词工具。
+主要功能包括：
+    1、分词
+    2、词性标注
+    3、高级分词，可以分析是否属于用户词典里面的词
+    4、设置词性标注集
+    5、添加用户词典
+    6、保存用户词典
+其中分词、词性标注和高级分词、定名定位支持多线程，线程安全。
+
+程序中的数据和源码的路径如下所示：
+1、/conf 文件夹
+    - config.json(配置文件)
+2、/data 文件夹
+   用户词典文件 
+3、/external/ictclas50 文件夹
+   -Configure.xml(ICTCLAS50配置文件)
+   -ICTCLAS50.h(ICTCLAS50的头文件)
+   -libICTCLAS50.a(ICTCLAS50静态共享库)
+   -user.lic(ICTCLAS50授权文件)
+   -ictclas50_postag.map(ICTCLAS50分词器词性转换表）
+   --Data/ 文件夹(ICTCLAS50的词典文件、词性标注集)
+4、/src 文件夹
+   -Makefile(makefile用来编译生成共享动态库)
+   -nlp_tokenizer_wrapper.h(分词器封装接口定义)
+   -nlp_ictclas50_wrapper.h(ICTCLAS50分词器封装定义)
+   -nlp_ictclas50_wrapper.cpp(ICTCLAS分词器封装实现)
+   -object_factory.hpp(用boost库实现的对象工厂泛型）
+   -tokenizer_factory_initializer.h(工厂初始化定义)
+   -tokenizer_factory_initializer.cpp(单件实现工厂初始化)
+   -tools.h(公共函数和异常处理类定义)
+   -tools.cpp(公共函数和异常处理类实现）
+5、/test  文件夹
+   -1.txt(测试文本文件)
+   -Makefile(makefile 文件，生成可执行程序)
+   -tokenizer.cpp(分词工具实现)
+   -ictclas50_user_dict.txt(用户词典测试文件)
+   运行tokenizer提供参数说明:./tokenizer -h
+      -h [ --help ]           Use -h or --help to list all the arguments
+      -c [ --category ] arg   [must]Choose the category of tokenizer
+                              0:ICTCLAS50
+      -r [ --rootpath ] arg   [must]The root path to init the tokenizer
+      -i [ --input ] arg      [must]Provide input file name
+      -f [ --function ] arg   [must]Select the tokenizer function 
+                              1:basic tokenizer,format:word;
+                              2:tokenizer with POS,format:word/postag;
+                              3:advance tokenizer,format:word/postag/unlisted/not in user dictionary/weight
+      -o [ --output ] arg     Provide the ouput file path name, the default is same
+                              to the input file path
+      -d [ --dictionary ] arg Input the user dictionary file path
+      -l [ --level ] arg      the level of postagger 
+                              0:ICTCLAS50二级标注集合;
+                              1:ICTCLAS50一级词性标注集;
+                              2:PKU二级词性标注;
+                              3:PKU一级词性标注;
+      -t [ --thread ] arg     Input the number of thread
+      -s [ --save ]           save the user dictionary to the disk
+      -p [ --print ] arg      print to the console
+                              1 output the result;
+                              0:not output the result;
+                              default is 1;
+   运行时首先将动态库的路径加入到系统环境变量：
+   添加方法：在~/.bashrc文件的最后加入下面这行，将其中eric.zhang修改为自己的用户名：
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/eric.zhang/bigben/external/boost/lib:/home/eric.zhang/bigben/external/ice/lib64:/home/eric.zhang/bigben/external/log4cplus/lib:/home/eric.zhang/bigben/external/kafka/lib:/home/eric.zhang/bigben/external/jsoncpp/lib:/home/eric.zhang/bigben/src/tokenizer/src  
+    然后运行: source ~/.bashrc
+    运行命令示例：./tokenizer -c 0 -r ../external/ictclas50 -i 1.txt -o 1 -f 1
+
+
+导入用户词典的文件格式说明：
+ICTCLAS50用户词典导入文件格式要求：
+1、每个词条一行，首行不导入，可以留空,可以写注释
+2、每个词条的格式：单词@@词性，其中词性可以省略,如果不加词性@@可以省略
+       
+ 
+

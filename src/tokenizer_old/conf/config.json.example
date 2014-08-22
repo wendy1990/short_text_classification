@@ -1,0 +1,14 @@
+{
+    "tokenizers":
+    [
+         {
+              "name":"ICTCLAS50",
+              "use":"On",
+              "rootpath":"/home/zuo.jin/work/bigben/src/tokenizer/external/ictclas50",
+              "postag_level":"0",
+              "import_user_dict":"Off",
+              "import_user_dict_path":"/home/zuo.jin/work/bigben/src/tokenizer/test/test_tokenizer/ictclas50_user_dict.txt",
+              "save_user_dict_to_disk":"Yes"
+         }
+    ]
+}

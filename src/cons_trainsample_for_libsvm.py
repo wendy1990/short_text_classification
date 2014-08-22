@@ -4,7 +4,7 @@
 module: cons_trainsample_for_libsvm.py
 usage: python cons_trainsample_for_libsvm.py -i <input_file> [-d dict_name] [-o <output_file>]
 desc: This is used to construct the libsvm-format file
-author: Felix Liang
+author: Wendy Yang
 date: 2013-10-30
 """
 import sys
@@ -41,7 +41,7 @@ def process(parse_result):
     if os.path.isfile(input_file): 
         dic_key= parse_result.dic_key.strip()
         dest_file=parse_result.dest_file
-        tms.cons_train_sample_for_svm(input_file,dic_key,sample_save_path=dest_file,str_splitTag="^")
+        tms.cons_train_sample_for_svm(input_file,dic_key,sample_save_path=dest_file,str_splitTag=" ")
         print "第三步<libsvm格式构造>处理结果：\n"
         print "构造好的libsvm格式文件为：%s\n\n\n"%dest_file
     else:
